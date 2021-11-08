@@ -5,8 +5,8 @@ import { ProjectListScreen } from "screens/project-list";
 // import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
-  <React.StrictMode>
-    <ProjectListScreen />
-  </React.StrictMode>,
-  document.getElementById("root")
+    <React.StrictMode>
+        <ProjectListScreen />
+    </React.StrictMode>,
+    document.getElementById("root")
 );
