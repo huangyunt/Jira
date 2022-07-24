@@ -14,27 +14,16 @@ export const useMount = (callback) => {
     // eslint-disable-next-line
     useEffect(callback, []);
 };
-export const debounce = function (callback, delay) {
-    let timer = null;
-    return function () {
-        if (timer) {
-            clearTimeout(timer);
-        } else {
-            timer = setTimeout(() => {
-                callback();
-            }, delay);
-        }
-    };
-};
-export const useDebounce = (value, delay) => {
-    const [debouncdValue, setDebouncdValue] = useState(value);
+
+export const useDebounce = (deps, delay) => {
+    const [debouncdValue, setDebouncdValue] = useState(deps);
     useEffect(() => {
         // 每次value变化，设置定时器
-        const timeout = setTimeout(() => setDebouncdValue(value), delay);
+        const timeout = setTimeout(() => setDebouncdValue(deps), delay);
         // 每次副效应函数重新执行之前，上一次副效应返回的函数也会执行一次，用来清理上一次渲染的副效应。
         return () => {
             clearTimeout(timeout);
         };
-    }, [value, delay]);
+    }, [deps, delay]);
     return debouncdValue;
 };
