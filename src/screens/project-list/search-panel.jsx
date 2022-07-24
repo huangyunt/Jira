@@ -1,42 +1,29 @@
-import { useEffect, useState } from "react";
-export const SearchPanel = () => {
-    const [param, setParam] = useState({
-        projectName: "",
-        personId: "",
-    });
-    const [users, setUsers] = useState([]);
-    const [list, setList] = useState({});
-    useEffect(() => {
-        fetch("").then(async (res) => {
-            if (res.ok) {
-                setList(await res.json());
-            }
-        });
-        return () => {};
-    }, [param]);
-
+import React, { useEffect, useState } from "react";
+export const SearchPanel = ({ users, param, setParam }) => {
     return (
         <div>
             <input
-                onChange={(evt) =>
+                type="text"
+                onChange={(event) =>
                     setParam({
                         ...param,
-                        projectName: evt.target.value,
+                        name: event.target.value,
                     })
                 }
-            ></input>
+            />
             <select
-                value=""
-                onChange={(evt) =>
+                onChange={(event) =>
                     setParam({
                         ...param,
-                        personId: evt.target.value,
+                        personId: event.target.value,
                     })
                 }
             >
                 <option value="">负责人</option>
                 {users.map((user) => (
-                    <option value={user.id}>{user.name}</option>
+                    <option key={user.id} value={user.id}>
+                        {user.name}
+                    </option>
                 ))}
             </select>
         </div>

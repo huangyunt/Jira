@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-export const isTrue = (value) => (value === 0 ? true : value);
+export const isTrue = (value) => (value === 0 ? true : !!value);
 export const cleanObject = (obj) => {
-    const res = {};
-    Object.keys(obj).forEach((key) => {
-        const val = obj[key];
-        if (isTrue(val)) {
-            res[key] = val;
+    const result = { ...obj };
+    Object.keys(result).forEach((key) => {
+        if (!isTrue(result[key])) {
+            delete result[key];
         }
     });
-    return res;
+    return result;
 };
+
 export const useMount = (callback) => {
     // eslint-disable-next-line
     useEffect(callback, []);
