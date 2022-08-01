@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-export const isTrue = (value: any) => (value === 0 ? true : !!value);
+export const isTrue = (value: unknown) => (value === 0 ? true : !!value);
 export const cleanObject = (obj: object) => {
   const result = { ...obj };
   Object.keys(result).forEach((key) => {
@@ -18,7 +18,7 @@ export const useMount = (callback: () => void) => {
   useEffect(callback, []);
 };
 
-export const useDebounce = (deps: any, delay?: number) => {
+export const useDebounce = (deps: unknown, delay?: number): any => {
   const [debouncdValue, setDebouncdValue] = useState(deps);
   useEffect(() => {
     // 每次value变化，设置定时器
