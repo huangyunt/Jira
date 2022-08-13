@@ -3,9 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { loadDevTools } from "jira-dev-tool";
 import { AppProviders } from "./context/index";
-// import "./index.css";
-// import App from "./App";
-// import reportWebVitals from "./reportWebVitals";
+import "antd/dist/antd.less";
+
 loadDevTools(() =>
   ReactDOM.render(
     <React.StrictMode>
